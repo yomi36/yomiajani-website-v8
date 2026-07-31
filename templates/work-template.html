@@ -80,7 +80,9 @@ function layoutGallery(){
   if (!galleryGrid || !galleryItems.length) return;
   const containerWidth = galleryGrid.clientWidth;
   const wide = containerWidth >= 700;
-  galleryMode = wide ? "scatter" : "stacked";
+  const nextMode = wide ? "scatter" : "stacked";
+  if (nextMode === galleryMode && nextMode === "stacked") return;
+  galleryMode = nextMode;
 
   if (!wide){
     galleryItems.forEach((item, i) => {
