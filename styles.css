@@ -237,7 +237,8 @@ a{ color: inherit; text-decoration: none; }
   transform: scale(1.001);
 }
 
-.project-item:hover .project-cover-art{
+.project-item:hover .project-cover-art,
+.project-item.in-focus .project-cover-art{
   filter: grayscale(0) contrast(1.05);
   transform: scale(1.035);
 }
@@ -257,7 +258,8 @@ a{ color: inherit; text-decoration: none; }
   pointer-events: none;
 }
 
-.project-item:hover .project-badge{
+.project-item:hover .project-badge,
+.project-item.in-focus .project-badge{
   opacity: 1;
   transform: translate(-50%,-50%) scale(1);
 }
@@ -273,7 +275,8 @@ a{ color: inherit; text-decoration: none; }
   transition: color .2s ease;
 }
 
-.project-item:hover .project-caption{ color: var(--text); }
+.project-item:hover .project-caption,
+.project-item.in-focus .project-caption{ color: var(--text); }
 
 /* ---------------------------------------------
    Contact & footer
@@ -319,6 +322,7 @@ a{ color: inherit; text-decoration: none; }
 }
 .footer a:hover{ color: var(--text); }
 .footer-social{ display:flex; gap: 18px; }
+
 
 /* ---------------------------------------------
    Impressum / Datenschutz
@@ -564,4 +568,16 @@ a{ color: inherit; text-decoration: none; }
   border: 1px solid var(--line-strong);
   border-radius: 20px;
   color: var(--dim);
+}
+
+/* ---------------------------------------------
+   Mobile: smaller, tighter body copy so long text
+   doesn't take up the whole screen. Placed last so
+   nothing above can override it.
+--------------------------------------------- */
+@media (max-width: 640px){
+  .work-description{ font-size: 14px; line-height: 1.42; }
+  .about-bio{ font-size: 14px; line-height: 1.45; }
+  .about-entry .role, .about-entry .org, .about-entry .date{ font-size: 12px; line-height: 1.3; }
+  .about-clients-line{ font-size: 12px; line-height: 1.7; }
 }

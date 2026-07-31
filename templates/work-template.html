@@ -83,12 +83,16 @@ function layoutGallery(){
   galleryMode = wide ? "scatter" : "stacked";
 
   if (!wide){
-    galleryItems.forEach((item) => {
+    galleryItems.forEach((item, i) => {
+      const widthPct = 78 + Math.random() * 18; // some variance instead of a flat 100%
+      const pushRight = i % 2 === 0;
       item.style.position = "relative";
-      item.style.width = "100%";
+      item.style.width = `${widthPct}%`;
       item.style.left = "";
       item.style.top = "";
       item.style.marginBottom = "28px";
+      item.style.marginLeft = pushRight ? "auto" : "0";
+      item.style.marginRight = pushRight ? "0" : "auto";
       item.style.transform = "";
       const ratio = Number(item.dataset.ratio) || 1.4;
       item.style.aspectRatio = String(ratio);

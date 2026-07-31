@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pop Up Prints — Yomi Ajani</title>
+<meta name="description" content="Pop Up Prints is a research project exploring inflatable structures and experimental fabrication processes. Unlike traditional fabrication, the process utilizes the hot nozzle of a 3D printer, heated up to 300°C, to laminate layers of elastic TPU foil together. Developing distinct geometries and par">
+<link rel="icon" href="data:,">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+
+<header class="nav">
+  <a href="../../index.html" class="nav-logo">YOMI AJANI</a>
+  <span class="nav-tagline">Product &amp; Interaction Design — Berlin</span>
+  <nav class="nav-links">
+    <a href="../../index.html#projects">Projects</a>
+    <a href="../../about/index.html">About</a>
+    <a href="../../index.html#contact">Contact</a>
+  </nav>
+  <button class="nav-toggle" id="navToggle" aria-label="Toggle menu"><span></span><span></span></button>
+</header>
+
+<main>
+
+  <section class="work-hero">
+    <p class="work-eyebrow">Research — 2021</p>
+    <h1 class="work-title">Pop Up Prints</h1>
+    <p class="work-description">Pop Up Prints is a research project exploring inflatable structures and experimental fabrication processes. Unlike traditional fabrication, the process utilizes the hot nozzle of a 3D printer, heated up to 300°C, to laminate layers of elastic TPU foil together. Developing distinct geometries and parametric patterns through an iterative design process opened up the possibility of using this 2D production process to create objects that emerge into 3D shapes when inflated.</p>
+
+    <div class="work-meta">
+      
+      <div class="meta-cell">
+        <span class="meta-label">At</span>
+        <span class="meta-value">Royal College of Art</span>
+      </div>
+      <div class="meta-cell">
+        <span class="meta-label">Role</span>
+        <span class="meta-value">Concept, Design, Execution</span>
+      </div>
+      <div class="meta-cell meta-cell-link">
+        <a href="https://2021.rca.ac.uk/students/yomi-ajani/" target="_blank" rel="noopener">Read more &#8594;</a>
+      </div>
+    </div>
+  </section>
+
+  
+
+  <section class="work-gallery">
+    
+      <span class="work-gallery-item" data-ratio="1.4988">
+        <img src="../../images/projects/pop-up-prints/gallery/gallery-1.JPG" alt="" loading="lazy">
+      </span>
+      <span class="work-gallery-item" data-ratio="1.4988">
+        <img src="../../images/projects/pop-up-prints/gallery/gallery-2.JPG" alt="" loading="lazy">
+      </span>
+      <span class="work-gallery-item" data-ratio="1.4988">
+        <img src="../../images/projects/pop-up-prints/gallery/gallery-3.JPG" alt="" loading="lazy">
+      </span>
+      <span class="work-gallery-item" data-ratio="1.4988">
+        <img src="../../images/projects/pop-up-prints/gallery/gallery-4.JPG" alt="" loading="lazy">
+      </span>
+      <span class="work-gallery-item" data-ratio="1.4988">
+        <img src="../../images/projects/pop-up-prints/gallery/gallery-5.JPG" alt="" loading="lazy">
+      </span>
+      <span class="work-gallery-item" data-ratio="1.4988">
+        <img src="../../images/projects/pop-up-prints/gallery/gallery-6.JPG" alt="" loading="lazy">
+      </span>
+      <span class="work-gallery-item" data-ratio="1.4988">
+        <img src="../../images/projects/pop-up-prints/gallery/gallery-7.JPG" alt="" loading="lazy">
+      </span>
+  </section>
+
+  <nav class="work-pagenav">
+    <a href="../inflatable-formworks/index.html" class="pagenav-link pagenav-prev">&#8592; Inflatable Formworks</a>
+    <a href="../the-procrastinator/index.html" class="pagenav-link pagenav-next">The Procrastinator &#8594;</a>
+  </nav>
+
+  <section class="contact" id="contact">
+    <p class="contact-eyebrow">GET IN TOUCH</p>
+    <a class="contact-email" href="mailto:hello@yomiajani.com">hello@yomiajani.com</a>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <span>© 2026 Yomi Ajani</span>
+  <a href="../../impressum/index.html">Impressum &amp; Datenschutz</a>
+  <div class="footer-social">
+    <a href="https://www.instagram.com/yomiajani/" target="_blank" rel="noopener">Instagram</a>
+    <a href="https://www.linkedin.com/in/yomiajani/" target="_blank" rel="noopener">LinkedIn</a>
+  </div>
+</footer>
+
+<script>
+const navToggle = document.getElementById("navToggle");
+const navLinks = document.querySelector(".nav-links");
+navToggle?.addEventListener("click", () => navLinks.classList.toggle("open"));
+
+// --- Gallery: loose scatter layout with scroll parallax, same technique
+// as the homepage's project grid, but with bigger images and fewer
+// columns so only 2–3 are ever in view at once. ---
+const galleryGrid = document.querySelector(".work-gallery");
+const galleryItems = galleryGrid ? Array.from(galleryGrid.querySelectorAll(".work-gallery-item")) : [];
+const reduceMotionGallery = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+let galleryMode = null;
+
+function layoutGallery(){
+  if (!galleryGrid || !galleryItems.length) return;
+  const containerWidth = galleryGrid.clientWidth;
+  const wide = containerWidth >= 700;
+  galleryMode = wide ? "scatter" : "stacked";
+
+  if (!wide){
+    galleryItems.forEach((item) => {
+      item.style.position = "relative";
+      item.style.width = "100%";
+      item.style.left = "";
+      item.style.top = "";
+      item.style.marginBottom = "28px";
+      item.style.transform = "";
+      const ratio = Number(item.dataset.ratio) || 1.4;
+      item.style.aspectRatio = String(ratio);
+    });
+    galleryGrid.style.height = "";
+    return;
+  }
+
+  const colCount = 2;
+  const gutter = 48;
+  const colWidth = (containerWidth - gutter * (colCount - 1)) / colCount;
+  const colHeights = new Array(colCount).fill(0);
+  const colFactors = Array.from({ length: colCount }, () => (reduceMotionGallery ? 0 : Math.random() * 0.2 - 0.1));
+
+  galleryItems.forEach((item) => {
+    item.style.position = "absolute";
+    const col = colHeights.indexOf(Math.min(...colHeights));
+    const ratio = Number(item.dataset.ratio) || 1.4;
+
+    const widthPct = 0.62 + Math.random() * 0.33; // bigger, more varied images — 62%–95% of column width
+    const width = colWidth * widthPct;
+    const leftover = colWidth - width;
+    let jitter;
+    if (col === 0) jitter = leftover * (Math.random() * 0.3);
+    else jitter = leftover * (0.7 + Math.random() * 0.3);
+
+    const left = col * (colWidth + gutter) + jitter;
+    const gap = 90 + Math.random() * 110;
+    const top = colHeights[col] + (colHeights[col] === 0 ? 0 : gap);
+    const height = width / ratio;
+
+    item.style.width = `${width}px`;
+    item.style.height = `${height}px`;
+    item.style.left = `${left}px`;
+    item.style.top = `${top}px`;
+    item.style.marginBottom = "";
+    item.style.aspectRatio = "";
+    item.style.transform = "";
+    item.baseTop = top;
+    item.baseHeight = height;
+    item.parallaxFactor = colFactors[col];
+
+    colHeights[col] = top + height + gap * 0; // gap already applied above via top calc
+    colHeights[col] = top + height;
+  });
+
+  galleryGrid.style.height = `${Math.max(...colHeights) + 40}px`;
+}
+
+let galleryTicking = false;
+function updateGalleryParallax(){
+  if (galleryMode !== "scatter" || reduceMotionGallery || !galleryGrid){ galleryTicking = false; return; }
+  const viewportCenter = window.innerHeight / 2;
+  const gridTop = galleryGrid.getBoundingClientRect().top;
+  const maxShift = window.innerHeight * 0.5;
+  galleryItems.forEach((item) => {
+    if (item.baseTop === undefined) return;
+    const itemViewportTop = gridTop + item.baseTop;
+    const distance = viewportCenter - (itemViewportTop + item.baseHeight / 2);
+    const clamped = Math.max(Math.min(distance, maxShift), -maxShift);
+    item.style.transform = `translateY(${clamped * item.parallaxFactor}px)`;
+  });
+  galleryTicking = false;
+}
+
+if (galleryGrid && galleryItems.length){
+  layoutGallery();
+  updateGalleryParallax();
+
+  let galleryResizeTimer;
+  window.addEventListener("resize", () => {
+    clearTimeout(galleryResizeTimer);
+    galleryResizeTimer = setTimeout(layoutGallery, 150);
+  });
+
+  window.addEventListener("scroll", () => {
+    if (!galleryTicking){
+      requestAnimationFrame(updateGalleryParallax);
+      galleryTicking = true;
+    }
+  }, { passive: true });
+}
+</script>
+</body>
+</html>

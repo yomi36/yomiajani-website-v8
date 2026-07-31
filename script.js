@@ -9,6 +9,7 @@ const watermarkFactor = 0.045; // slower, independent drift vs. the cover items
 const items = [];
 let mode = null; // "scatter" | "stacked"
 const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+const isTouchDevice = window.matchMedia("(hover: none)").matches;
 
 function buildItems(){
   const frag = document.createDocumentFragment();
@@ -114,10 +115,14 @@ function layoutScatter(){
 }
 
 function layoutStacked(){
-  items.forEach((item) => {
-    item.style.width = "";
+  items.forEach((item, i) => {
+    const widthPct = 78 + Math.random() * 18; // 78%–96% of the column width — some variance instead of a flat 100%
+    const pushRight = i % 2 === 0;
+    item.style.width = `${widthPct}%`;
     item.style.left = "";
     item.style.top = "";
+    item.style.marginLeft = pushRight ? "auto" : "0";
+    item.style.marginRight = pushRight ? "0" : "auto";
     item.style.transform = "";
   });
   grid.style.height = "";
@@ -174,6 +179,20 @@ function updateParallax(){
     }
 
     watermark.style.transform = `translateY(${wDistance * watermarkFactor + exitLift}px)`;
+  }
+
+  // Touch devices have no hover — instead, whichever cover is closest
+  // to the viewport center gets the same color-reveal/zoom treatment.
+  // Runs regardless of layout mode (scatter or single-column stacked).
+  if (isTouchDevice){
+    let closestItem = null;
+    let closestDist = Infinity;
+    items.forEach((item) => {
+      const rect = item.getBoundingClientRect();
+      const dist = Math.abs(viewportCenter - (rect.top + rect.height / 2));
+      if (dist < closestDist){ closestDist = dist; closestItem = item; }
+    });
+    items.forEach((item) => item.classList.toggle("in-focus", item === closestItem));
   }
 
   if (mode !== "scatter" || reduceMotion){ ticking = false; return; }
