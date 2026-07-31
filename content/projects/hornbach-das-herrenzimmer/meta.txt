@@ -1,0 +1,9 @@
+title: Hornbach das Herrenzimmer
+year: 2015
+category: Set Design
+with: Neulant van Exel, Easy Does it, Heimat
+for: Hornbach
+role: Engineering & Construction
+readmore: https://www.youtube.com/playlist?list=PLUDlNoq8zkR-5NYJv7sLMwVLSnWHvR3XR
+order: 11
+description: Set design and construction for the production of the TV commercial series Hornbach – Das Herrenzimmer. Five different stations were created in one imaginary man cave, built in four weeks using solely materials and props from the store — a forest-run simulator, a beer trough, an anti-spa, a hover chair, and a fishing oasis — including manuals to recreate everything at home.

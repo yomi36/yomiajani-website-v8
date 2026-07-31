@@ -1,0 +1,7 @@
+title: Aircraft Passenger Service Unit
+year: 2024
+category: R&D
+with: nFrontier
+role: Digital Content System & Visualisations
+order: 8
+description: Harmonizing cabin parts among different aircraft families to improve efficiency is one of the big challenges of aircraft manufacturers today. The design introduces the concept of modularity to the passenger service unit, located above individual passengers, and improves its digital capabilities. The PSU design features modules that can be upgraded or downgraded, projectors and displays that enhance the cabin experience, and AI-supported cameras that identify dangerous behavior.

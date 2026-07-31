@@ -1,0 +1,7 @@
+title: Liquid Glass Interface
+year: 2026
+category: R&D
+at: Creative Dock
+role: Concept, Interactive Design System
+order: 16
+description: This Interaction Project explores how digital experiences can be seamlessly integrated into physical materials by embedding interactive touch displays beneath translucent leather surfaces. Developed in TouchDesigner, the experience combines real-time interactive graphics with pre-rendered visual sequences to create a fluid, liquid glass-inspired UI that responds to touch. The project demonstrates how depth, light, and motion can enhance the perceived clarity of embedded displays while maintaining the premium material quality of the surrounding surface.

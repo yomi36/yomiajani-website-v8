@@ -1,0 +1,7 @@
+title: The Procrastinator
+year: 2020
+category: Installation
+at: Royal College of Art
+role: Concept, Design, Execution
+order: 7
+description: The Procrastinator is an installation piece and video performance built around the absurdity of the functional principle of certain everyday objects, in this case the pencil. It relentlessly sharpens pencils to the point of complete destruction, creating a pile of pencil shavings in a beautiful motion in the process.

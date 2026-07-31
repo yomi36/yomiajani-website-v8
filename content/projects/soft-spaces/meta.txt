@@ -1,0 +1,8 @@
+title: Soft Spaces
+year: 2025
+category: Exhibition
+for: Mille Formes
+role: Design, Development, Production
+readmore: https://www.milleformes.fr/programme/soft-spaces
+order: 4
+description: Soft Spaces is the third part of an ongoing examination of air structures and inflatables. An interactive play installation at the kids art education center Mille Formes in Clermont-Ferrand, France. Young children are invited and led by a mediation team to perceive air as a new material made of lightness and softness, a world of colorful objects with varied sensations that unfold before them like a dream-like inflated landscape.

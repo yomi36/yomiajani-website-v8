@@ -1,0 +1,8 @@
+title: Playmobil Interactive
+year: 2026
+category: Retail
+at: CreativeDock
+for:Playmobil
+role: Design, Interaction, Ai Content Curation
+order: 14
+description: This interactive Playmobil point-of-sale figure transforms the retail experience by bringing physical playsets to life through digital storytelling. Equipped with an integrated tablet and camera system, the figure allows children to scan their Playmobil box and unlock an animated version of the world they are about to build. By merging tangible products with immersive digital content, the installation sparks curiosity, encourages imaginative play, and creates a memorable connection between the child and the Playmobil universe. Designed as an engaging retail touchpoint, it turns product discovery into an interactive adventure.

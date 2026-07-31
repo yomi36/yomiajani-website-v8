@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About — Yomi Ajani</title>
+<meta name="description" content="Berlin based product and interaction designer, focused on the intersection of design and technology.">
+<link rel="icon" href="data:,">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+<header class="nav">
+  <a href="../index.html" class="nav-logo">YOMI AJANI</a>
+  <span class="nav-tagline">Product &amp; Interaction Design — Berlin</span>
+  <nav class="nav-links">
+    <a href="../index.html#projects">Projects</a>
+    <a href="index.html">About</a>
+    <a href="../index.html#contact">Contact</a>
+  </nav>
+  <button class="nav-toggle" id="navToggle" aria-label="Toggle menu"><span></span><span></span></button>
+</header>
+
+<main>
+
+  <section class="about">
+    {{PORTRAIT}}
+
+    <div class="about-intro">
+      <h1>About</h1>
+      {{BIO}}
+    </div>
+  </section>
+
+  <section class="about-section">
+    <h2>Clients &amp; Collaborators</h2>
+    <p class="about-clients-line">
+      {{CLIENTS}}
+    </p>
+  </section>
+
+  <section class="about-section">
+    <h2>Exhibitions &amp; Publications</h2>
+    <div class="about-entries">
+      {{EXHIBITIONS}}
+    </div>
+  </section>
+
+  <section class="contact" id="contact">
+    <p class="contact-eyebrow">GET IN TOUCH</p>
+    <a class="contact-email" href="mailto:hello@yomiajani.com">hello@yomiajani.com</a>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <span>© 2026 Yomi Ajani</span>
+  <a href="../impressum/index.html">Impressum &amp; Datenschutz</a>
+  <div class="footer-social">
+    <a href="https://www.instagram.com/yomiajani/" target="_blank" rel="noopener">Instagram</a>
+    <a href="https://www.linkedin.com/in/yomiajani/" target="_blank" rel="noopener">LinkedIn</a>
+  </div>
+</footer>
+
+<script>
+const navToggle = document.getElementById("navToggle");
+const navLinks = document.querySelector(".nav-links");
+navToggle?.addEventListener("click", () => navLinks.classList.toggle("open"));
+</script>
+</body>
+</html>

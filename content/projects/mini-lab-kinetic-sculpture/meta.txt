@@ -1,0 +1,9 @@
+title: MINI LAB Kinetic Sculpture
+year: 2023
+category: Brand Experience
+with: nFrontier, Jung von Matt Nerd
+for: Mini
+role: Interaction, Choreography, Video
+readmore: https://www.highsnobiety.com/p/mini-family-car-gamescom/
+order: 2
+description: For Gamescom and IAA, the interactive kinetic sculpture called MINI LAB was created centered around the MINI Aceman model and its round LG OLED display. The car's silhouette, composed of hundreds of hanging spheres, transforms, moves, and recomposes in dynamic response to the visitor's heartbeat, tracked by sensors at an interactive terminal.

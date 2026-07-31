@@ -1,0 +1,7 @@
+title: Ultrabar Assistance System
+year: 2017
+category: R&D
+at: Universität der Künste
+role: Concept, Design, Execution
+order: 9
+description: Project Ultrabar was initiated to develop tools enabling direct communication between cyclists and car drivers, catching a driver's attention in potentially dangerous situations. The Ultrabar system is integrated into the handlebar and fitted with ultrasonic transmitters capable of tricking a modern car's parking-sensor system into triggering audible warnings for the driver. It also uses LED arrays to achieve the functions of headlights and indicators known from automobiles, activated by pressure-sensitive grips on the handlebar, either on purpose or when braking forcefully.

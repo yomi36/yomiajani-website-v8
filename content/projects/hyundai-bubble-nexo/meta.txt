@@ -1,0 +1,9 @@
+title: Hyundai Bubble Nexo
+year: 2021
+category: Brand Experience
+with: Neulant van Exel, Jung von Matt Spree
+for: Hyundai
+role: Design, Engineering, Prototyping
+readmore: https://neulantvanexel.de/projects/nexo-bubble-machine/
+order: 3
+description: In an effort to creatively showcase the sustainable benefits of the hydrogen powered Nexo vehicle from Hyundai for a commercial video production, a bubble making machine was designed and engineered that uses the clean air and water from the tailpipe to create soap bubbles that transport plant seeds into the environment.

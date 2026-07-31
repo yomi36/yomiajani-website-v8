@@ -1,0 +1,8 @@
+title: Sound Structures
+year: 2022
+category: Research
+at: nFrontier
+role: Concept, Design, Execution
+readmore: https://www.designboom.com/technology/nfrontier-sound-structures-human-robot-manufacturing-process-08-15-2022/
+order: 1
+description: Sound Structures is a human machine collaboration in a design and manufacturing process based on research about sound absorbing structures. Aimed at creating a system of unique, three dimensionally deformed felt panels with maximized surface area, a thermoforming process is used to create topologies defined by the arrangement of spheres in a flexible mould at a specific moment. The contradiction between the robot's repeatable tool paths resulting in randomization and the consistent contribution of the human create an ironic and playful yet fabrication driven choreography.

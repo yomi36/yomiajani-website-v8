@@ -1,0 +1,8 @@
+title: Interactive Train Exhibit
+year: 2022
+category: Brand Experience
+with: nFrontier, Artificial Rome
+for: Vossloh Rolling Stock
+role: Interaction & Electronics
+order: 10
+description: This project demonstrates the possibilities of enhancing a physical exhibit with interaction electronics and augmented reality to increase engagement and the display of additional information. The design features a train model sliced into acrylic panels, etched with technical details akin to an MRI scan, showing its complex systems in a visually engaging way. A second, overlaid layer of augmented digital reality allows exploration of engine options and detailed information, offering a seamless transition between the physical and digital realms.

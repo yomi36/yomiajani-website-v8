@@ -1,0 +1,8 @@
+title: Inflatable Formworks
+year: 2021
+category: Research
+at: Royal College of Art
+role: Concept, Design, Execution
+readmore: https://2021.rca.ac.uk/students/yomi-ajani/
+order: 5
+description: Inflatable Formworks is a process based work that explores the possibilities of manufacturing inflatable objects and controlling their three-dimensional deformation through geometry and material choices. Elements were created using a large scale CNC heat sealing machine to draw specifically developed patterns onto layers of coated, airtight fabrics. During expansion, the tension of the material, amplified by seals in specific areas, causes the objects to automatically rise and forces them into predefined shapes.

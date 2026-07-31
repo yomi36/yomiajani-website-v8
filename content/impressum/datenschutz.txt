@@ -1,0 +1,30 @@
+## Verantwortlicher
+
+Verantwortlich für die Datenverarbeitung auf dieser Website ist:
+
+Yomi Ajani
+12055 Berlin
+E-Mail: hello@yomiajani.com
+
+## Hosting
+
+Diese Website wird bei GitHub Pages gehostet. Der Anbieter verarbeitet dabei ggf. automatisch sogenannte Server-Log-Files, die Ihr Browser übermittelt (z. B. Browsertyp, verwendetes Betriebssystem, Referrer-URL, IP-Adresse, Uhrzeit der Serveranfrage). Diese Daten sind nicht bestimmten Personen zuordenbar und werden nicht mit anderen Datenquellen zusammengeführt.
+
+## Google Fonts
+
+Diese Website nutzt zur einheitlichen Darstellung von Schriftarten "Google Fonts", einen Dienst der Google Ireland Limited. Beim Aufruf dieser Website lädt Ihr Browser die benötigten Schriftarten direkt von Servern von Google, wodurch eine Verbindung zu Servern von Google hergestellt und dabei Ihre IP-Adresse an Google übermittelt werden kann.
+## Eingebettete Vimeo-Videos
+
+Auf dieser Website werden Videos des Anbieters Vimeo (Vimeo.com Inc., USA, bzw. Vimeo Inc. mit Sitz in der EU/den USA) eingebunden. Beim Abspielen eines Videos wird eine Verbindung zu den Servern von Vimeo hergestellt, wobei technische Daten (z. B. IP-Adresse) an Vimeo übertragen werden können. Weitere Informationen zum Umgang mit Nutzerdaten finden Sie in der Datenschutzerklärung von Vimeo: https://vimeo.com/privacy
+
+## Kontaktaufnahme per E-Mail
+
+Wenn Sie uns per E-Mail kontaktieren, werden Ihre Angaben (E-Mail-Adresse, ggf. Name und Nachricht) von uns gespeichert, um Ihre Anfrage zu bearbeiten. Eine Weitergabe an Dritte erfolgt nicht. Die Daten werden gelöscht, sobald sie für die Bearbeitung Ihrer Anfrage nicht mehr erforderlich sind.
+
+## Cookies und Analyse-Tools
+
+Diese Website setzt nach aktuellem Stand keine Cookies zu Analyse- oder Marketingzwecken und keine Analyse-Tools (z. B. Google Analytics) ein.
+
+## Ihre Rechte als betroffene Person
+
+Sie haben jederzeit das Recht auf unentgeltliche Auskunft über Ihre gespeicherten personenbezogenen Daten, deren Herkunft und Empfänger sowie den Zweck der Datenverarbeitung sowie ein Recht auf Berichtigung, Sperrung oder Löschung dieser Daten. Hierzu sowie zu weiteren Fragen zum Thema personenbezogene Daten können Sie sich jederzeit über die im Impressum angegebene E-Mail-Adresse an uns wenden. Ihnen steht zudem ein Beschwerderecht bei der zuständigen Aufsichtsbehörde zu.

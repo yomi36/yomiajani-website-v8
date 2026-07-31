@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About — Yomi Ajani</title>
+<meta name="description" content="Berlin based product and interaction designer, focused on the intersection of design and technology.">
+<link rel="icon" href="data:,">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+<header class="nav">
+  <a href="../index.html" class="nav-logo">YOMI AJANI</a>
+  <span class="nav-tagline">Product &amp; Interaction Design — Berlin</span>
+  <nav class="nav-links">
+    <a href="../index.html#projects">Projects</a>
+    <a href="index.html">About</a>
+    <a href="../index.html#contact">Contact</a>
+  </nav>
+  <button class="nav-toggle" id="navToggle" aria-label="Toggle menu"><span></span><span></span></button>
+</header>
+
+<main>
+
+  <section class="about">
+    <div class="about-portrait has-photo"><img src="../images/about/portrait.jpg" alt="Yomi Ajani"></div>
+
+    <div class="about-intro">
+      <h1>About</h1>
+      <p class="about-bio">Berlin based product and interaction designer, focused on the intersection of design and technology.
+After working and studying in Berlin, Tokyo, and London, he is currently as a Senior Designerwith innovation &amp; technology studio nFrontier by CreativeDock.
+Recent works include interactive prototypes and reactive animations for transportation industry clients, experience design for brands and film productions, research projects on robotics, fabrication and material innovation, and videography.</p>
+    </div>
+  </section>
+
+  <section class="about-section">
+    <h2>Clients &amp; Collaborators</h2>
+    <p class="about-clients-line">
+      <span class="client-item">MINI <span class="dot">&middot;</span></span> <span class="client-item">Airbus <span class="dot">&middot;</span></span> <span class="client-item">Netflix <span class="dot">&middot;</span></span> <span class="client-item">Hyundai <span class="dot">&middot;</span></span> <span class="client-item">Dräxlmaier <span class="dot">&middot;</span></span> <span class="client-item">Playmobil <span class="dot">&middot;</span></span> <span class="client-item">Vossloh <span class="dot">&middot;</span></span> <span class="client-item">Cornelsen <span class="dot">&middot;</span></span> <span class="client-item">Lollapalooza <span class="dot">&middot;</span></span> <span class="client-item">Hornbach <span class="dot">&middot;</span></span> <span class="client-item">Neulant van Exel <span class="dot">&middot;</span></span> <span class="client-item">Field.io <span class="dot">&middot;</span></span> <span class="client-item">Jung von Matt Spree <span class="dot">&middot;</span></span> <span class="client-item">Jung von Matt Nerd <span class="dot">&middot;</span></span> <span class="client-item">Easy Does It <span class="dot">&middot;</span></span> <span class="client-item">Heimat <span class="dot">&middot;</span></span> <span class="client-item">Artificial Rome</span>
+    </p>
+  </section>
+
+  <section class="about-section">
+    <h2>Exhibitions &amp; Publications</h2>
+    <div class="about-entries">
+      <div class="about-entry"><span class="role"><a href="https://www.fondationlouisvuitton.fr/en/events/family-festival-2026" target="_blank" rel="noopener">Soft Spaces at Family Festival</a></span><span class="org">Fondation Louis Vuitton, Paris</span><span class="date">2026</span></div>
+      <div class="about-entry"><span class="role"><a href="https://www.milleformes.fr/programme/soft-spaces" target="_blank" rel="noopener">Soft Spaces at Mille Formes</a></span><span class="org">Clermont-Ferrand</span><span class="date">2025</span></div>
+      <div class="about-entry"><span class="role"><a href="https://www.highsnobiety.com/p/mini-family-car-gamescom/" target="_blank" rel="noopener">Highsnobiety</a></span><span class="org">Kinetic Sculpture Project Feature</span><span class="date">2024</span></div>
+      <div class="about-entry"><span class="role"><a href="https://www.designboom.com/technology/nfrontier-sound-structures-human-robot-manufacturing-process-08-15-2022/" target="_blank" rel="noopener">Designboom</a></span><span class="org">Sound Structures Project Feature</span><span class="date">2022</span></div>
+      <div class="about-entry"><span class="role"><a href="https://medium.com/luminaries/yomi-ajani-inflatable-formworks-5922cda2ab5b" target="_blank" rel="noopener">Luminaries Magazine</a></span><span class="org">Interview</span><span class="date">2021</span></div>
+      <div class="about-entry"><span class="role">Étapes Magazine, no. 264</span><span class="org">Printed Feature</span><span class="date">2021</span></div>
+    </div>
+  </section>
+
+  <section class="contact" id="contact">
+    <p class="contact-eyebrow">GET IN TOUCH</p>
+    <a class="contact-email" href="mailto:hello@yomiajani.com">hello@yomiajani.com</a>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <span>© 2026 Yomi Ajani</span>
+  <a href="../impressum/index.html">Impressum &amp; Datenschutz</a>
+  <div class="footer-social">
+    <a href="https://www.instagram.com/yomiajani/" target="_blank" rel="noopener">Instagram</a>
+    <a href="https://www.linkedin.com/in/yomiajani/" target="_blank" rel="noopener">LinkedIn</a>
+  </div>
+</footer>
+
+<script>
+const navToggle = document.getElementById("navToggle");
+const navLinks = document.querySelector(".nav-links");
+navToggle?.addEventListener("click", () => navLinks.classList.toggle("open"));
+</script>
+</body>
+</html>
