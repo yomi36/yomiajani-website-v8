@@ -580,4 +580,7 @@ a{ color: inherit; text-decoration: none; }
   .about-bio{ font-size: 14px; line-height: 1.45; }
   .about-entry .role, .about-entry .org, .about-entry .date{ font-size: 12px; line-height: 1.3; }
   .about-clients-line{ font-size: 12px; line-height: 1.7; }
+
+  .projects{ padding-top: 6vh; }
+  .projects-watermark{ margin-bottom: 140px; }
 }

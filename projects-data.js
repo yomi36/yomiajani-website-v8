@@ -31,7 +31,7 @@ const projects = [
     "year": "2025",
     "category": "Exhibition",
     "image": "images/projects/soft-spaces.jpg",
-    "ratio": 0.862
+    "ratio": 0.7737
   },
   {
     "slug": "inflatable-formworks",
