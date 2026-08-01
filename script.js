@@ -172,10 +172,10 @@ function updateParallax(){
       const contactRect = contactSection.getBoundingClientRect();
       // Start lifting once Get in touch's top edge is about to enter the
       // viewport from below, reach full lift once it's well into view.
-      const triggerStart = window.innerHeight;
-      const triggerEnd = window.innerHeight * 0.3;
+      const triggerStart = window.innerHeight * 1.4;
+      const triggerEnd = window.innerHeight * 0.4;
       const progress = Math.min(Math.max((triggerStart - contactRect.top) / (triggerStart - triggerEnd), 0), 1);
-      exitLift = -progress * 160;
+      exitLift = -progress * 280;
     }
 
     watermark.style.transform = `translateY(${wDistance * watermarkFactor + exitLift}px)`;
