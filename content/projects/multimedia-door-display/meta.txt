@@ -1,7 +1,0 @@
-title: Multimedia Door Display
-year: 2024
-category: R&D
-at: nFrontier
-role: Interactive Content System
-order: 15
-description: Using material innovations on translucent fabrics to showcase the automotive trends shytech and projections was at the core of this project. Interaction concepts and a redesign of the door trim were developed to create large continuous surfaces and provide space for LED matrices, projections and panel heating placed behind synthetic see-through leather. On demand touch surfaces were incorporated behind vinyl fabric. All interfaces, displays and animations are interconnected and reactive to user interaction.

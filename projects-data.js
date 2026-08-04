@@ -98,14 +98,6 @@ const projects = [
     "ratio": 1.5006
   },
   {
-    "slug": "multimedia-door-display",
-    "title": "Multimedia Door Display",
-    "year": "2024",
-    "category": "R&D",
-    "image": "images/projects/multimedia-door-display.png",
-    "ratio": 1.5
-  },
-  {
     "slug": "liquid-glass-interface",
     "title": "Liquid Glass Interface",
     "year": "2026",
