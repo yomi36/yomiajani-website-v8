@@ -50,6 +50,22 @@ const projects = [
     "ratio": 1.4988
   },
   {
+    "slug": "liquid-glass-interface",
+    "title": "Liquid Glass Interface",
+    "year": "2026",
+    "category": "R&D",
+    "image": "images/projects/liquid-glass-interface.png",
+    "ratio": 0.7558
+  },
+  {
+    "slug": "playmobil",
+    "title": "Playmobil Interactive",
+    "year": "2026",
+    "category": "Retail",
+    "image": "images/projects/playmobil.jpg",
+    "ratio": 1.5006
+  },
+  {
     "slug": "the-procrastinator",
     "title": "The Procrastinator",
     "year": "2020",
@@ -66,14 +82,6 @@ const projects = [
     "ratio": 1.7902
   },
   {
-    "slug": "ultrabar-assistance-system",
-    "title": "Ultrabar Assistance System",
-    "year": "2017",
-    "category": "R&D",
-    "image": "images/projects/ultrabar-assistance-system.jpeg",
-    "ratio": 1.5
-  },
-  {
     "slug": "interactive-train-exhibit",
     "title": "Interactive Train Exhibit",
     "year": "2022",
@@ -82,27 +90,19 @@ const projects = [
     "ratio": 1.7778
   },
   {
+    "slug": "ultrabar-assistance-system",
+    "title": "Ultrabar Assistance System",
+    "year": "2017",
+    "category": "R&D",
+    "image": "images/projects/ultrabar-assistance-system.jpeg",
+    "ratio": 1.5
+  },
+  {
     "slug": "hornbach-das-herrenzimmer",
     "title": "Hornbach das Herrenzimmer",
     "year": "2015",
     "category": "Set Design",
     "image": "images/projects/hornbach-das-herrenzimmer.jpg",
     "ratio": 1.5184
-  },
-  {
-    "slug": "playmobil",
-    "title": "Playmobil Interactive",
-    "year": "2026",
-    "category": "Retail",
-    "image": "images/projects/playmobil.jpg",
-    "ratio": 1.5006
-  },
-  {
-    "slug": "liquid-glass-interface",
-    "title": "Liquid Glass Interface",
-    "year": "2026",
-    "category": "R&D",
-    "image": "images/projects/liquid-glass-interface.png",
-    "ratio": 0.7558
   }
 ];
