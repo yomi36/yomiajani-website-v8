@@ -48,32 +48,39 @@
 
   <section class="work-gallery">
     
-      <span class="work-gallery-item" data-ratio="0.7505">
+      <a class="work-gallery-item" href="../../images/projects/liquid-glass-interface/gallery/gallery-1.gif" data-ratio="0.7505" aria-label="View image 1 of 7">
         <img src="../../images/projects/liquid-glass-interface/gallery/gallery-1.gif" alt="" loading="lazy">
-      </span>
-      <span class="work-gallery-item" data-ratio="2.2505">
+        <span class="project-badge">VIEW</span>
+      </a>
+      <a class="work-gallery-item" href="../../images/projects/liquid-glass-interface/gallery/gallery-2.png" data-ratio="2.2505" aria-label="View image 2 of 7">
         <img src="../../images/projects/liquid-glass-interface/gallery/gallery-2.png" alt="" loading="lazy">
-      </span>
-      <span class="work-gallery-item" data-ratio="0.7505">
+        <span class="project-badge">VIEW</span>
+      </a>
+      <a class="work-gallery-item" href="../../images/projects/liquid-glass-interface/gallery/gallery-3.gif" data-ratio="0.7505" aria-label="View image 3 of 7">
         <img src="../../images/projects/liquid-glass-interface/gallery/gallery-3.gif" alt="" loading="lazy">
-      </span>
-      <span class="work-gallery-item" data-ratio="1.5171">
+        <span class="project-badge">VIEW</span>
+      </a>
+      <a class="work-gallery-item" href="../../images/projects/liquid-glass-interface/gallery/gallery-4.png" data-ratio="1.5171" aria-label="View image 4 of 7">
         <img src="../../images/projects/liquid-glass-interface/gallery/gallery-4.png" alt="" loading="lazy">
-      </span>
-      <span class="work-gallery-item" data-ratio="2.2752">
+        <span class="project-badge">VIEW</span>
+      </a>
+      <a class="work-gallery-item" href="../../images/projects/liquid-glass-interface/gallery/gallery-5.png" data-ratio="2.2752" aria-label="View image 5 of 7">
         <img src="../../images/projects/liquid-glass-interface/gallery/gallery-5.png" alt="" loading="lazy">
-      </span>
-      <span class="work-gallery-item" data-ratio="0.7558">
+        <span class="project-badge">VIEW</span>
+      </a>
+      <a class="work-gallery-item" href="../../images/projects/liquid-glass-interface/gallery/gallery-6.png" data-ratio="0.7558" aria-label="View image 6 of 7">
         <img src="../../images/projects/liquid-glass-interface/gallery/gallery-6.png" alt="" loading="lazy">
-      </span>
-      <span class="work-gallery-item" data-ratio="0.7505">
+        <span class="project-badge">VIEW</span>
+      </a>
+      <a class="work-gallery-item" href="../../images/projects/liquid-glass-interface/gallery/gallery-7.gif" data-ratio="0.7505" aria-label="View image 7 of 7">
         <img src="../../images/projects/liquid-glass-interface/gallery/gallery-7.gif" alt="" loading="lazy">
-      </span>
+        <span class="project-badge">VIEW</span>
+      </a>
   </section>
 
   <nav class="work-pagenav">
     <a href="../pop-up-prints/index.html" class="pagenav-link pagenav-prev">&#8592; Pop Up Prints</a>
-    <a href="../playmobil/index.html" class="pagenav-link pagenav-next">Playmobil Interactive &#8594;</a>
+    <a href="../playmobil-interactive-pos/index.html" class="pagenav-link pagenav-next">Playmobil Interactive POS &#8594;</a>
   </nav>
 
   <section class="contact" id="contact">
@@ -104,6 +111,21 @@ const galleryGrid = document.querySelector(".work-gallery");
 const galleryItems = galleryGrid ? Array.from(galleryGrid.querySelectorAll(".work-gallery-item")) : [];
 const reduceMotionGallery = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 let galleryMode = null;
+const isTouchGallery = window.matchMedia("(hover: none)").matches;
+
+// Touch-Geräte haben kein Hover: das Bild, das der Bildschirmmitte am nächsten ist,
+// bekommt denselben Zoom + VIEW-Hinweis wie beim Hover am Desktop.
+function updateGalleryFocus(){
+  if (!isTouchGallery || !galleryItems.length) return;
+  const center = window.innerHeight / 2;
+  let best = null, bestDist = Infinity;
+  galleryItems.forEach((item) => {
+    const r = item.getBoundingClientRect();
+    const d = Math.abs(center - (r.top + r.height / 2));
+    if (d < bestDist){ bestDist = d; best = item; }
+  });
+  galleryItems.forEach((item) => item.classList.toggle("in-focus", item === best));
+}
 
 function layoutGallery(){
   if (!galleryGrid || !galleryItems.length) return;
@@ -175,6 +197,7 @@ function layoutGallery(){
 
 let galleryTicking = false;
 function updateGalleryParallax(){
+  updateGalleryFocus();
   if (galleryMode !== "scatter" || reduceMotionGallery || !galleryGrid){ galleryTicking = false; return; }
   const viewportCenter = window.innerHeight / 2;
   const gridTop = galleryGrid.getBoundingClientRect().top;
@@ -203,6 +226,96 @@ if (galleryGrid && galleryItems.length){
     if (!galleryTicking){
       requestAnimationFrame(updateGalleryParallax);
       galleryTicking = true;
+    }
+  }, { passive: true });
+}
+
+// --- Lightbox: Klick auf ein Galeriebild öffnet es groß. ---
+if (galleryItems.length){
+  const sources = galleryItems.map((a) => a.getAttribute("href"));
+  const pad2 = (n) => (n < 10 ? "0" : "") + n;
+
+  const lb = document.createElement("div");
+  lb.className = "lightbox";
+  lb.setAttribute("role", "dialog");
+  lb.setAttribute("aria-modal", "true");
+  lb.setAttribute("aria-label", "Image viewer");
+  lb.innerHTML =
+    '<button class="lightbox-close" type="button" aria-label="Close">Close</button>' +
+    '<img class="lightbox-img" alt="">' +
+    '<button class="lightbox-prev" type="button" aria-label="Previous image">&#8592; Prev</button>' +
+    '<span class="lightbox-count"></span>' +
+    '<button class="lightbox-next" type="button" aria-label="Next image">Next &#8594;</button>';
+  document.body.appendChild(lb);
+
+  const imgEl = lb.querySelector(".lightbox-img");
+  const closeBtn = lb.querySelector(".lightbox-close");
+  const prevBtn = lb.querySelector(".lightbox-prev");
+  const nextBtn = lb.querySelector(".lightbox-next");
+  const countEl = lb.querySelector(".lightbox-count");
+  const multiple = sources.length > 1;
+  if (!multiple){ prevBtn.hidden = true; nextBtn.hidden = true; countEl.hidden = true; }
+
+  let current = 0, opener = null, lastSwipe = 0;
+
+  function show(i){
+    current = (i + sources.length) % sources.length;
+    imgEl.src = sources[current];
+    countEl.textContent = pad2(current + 1) + " / " + pad2(sources.length);
+    if (multiple){
+      new Image().src = sources[(current + 1) % sources.length];
+      new Image().src = sources[(current - 1 + sources.length) % sources.length];
+    }
+  }
+  function open(i, trigger){
+    opener = trigger;
+    show(i);
+    lb.classList.add("open");
+    document.body.style.overflow = "hidden";
+    closeBtn.focus();
+  }
+  function close(){
+    lb.classList.remove("open");
+    document.body.style.overflow = "";
+    if (opener) opener.focus();
+  }
+
+  galleryItems.forEach((a, i) => {
+    a.addEventListener("click", (e) => { e.preventDefault(); open(i, a); });
+  });
+
+  // Klick irgendwo außer auf Prev/Next schließt (kurz nach einem Wisch nicht)
+  lb.addEventListener("click", (e) => {
+    if (Date.now() - lastSwipe < 400) return;
+    if (e.target.closest(".lightbox-prev, .lightbox-next")) return;
+    close();
+  });
+  prevBtn.addEventListener("click", (e) => { e.stopPropagation(); show(current - 1); });
+  nextBtn.addEventListener("click", (e) => { e.stopPropagation(); show(current + 1); });
+
+  document.addEventListener("keydown", (e) => {
+    if (!lb.classList.contains("open")) return;
+    if (e.key === "Escape") close();
+    else if (e.key === "ArrowLeft" && multiple) show(current - 1);
+    else if (e.key === "ArrowRight" && multiple) show(current + 1);
+    else if (e.key === "Tab"){
+      const f = [closeBtn].concat(multiple ? [prevBtn, nextBtn] : []);
+      const idx = f.indexOf(document.activeElement);
+      e.preventDefault();
+      f[(idx + (e.shiftKey ? -1 : 1) + f.length) % f.length].focus();
+    }
+  });
+
+  // Wischen auf Touch-Geräten
+  let touchX = null;
+  lb.addEventListener("touchstart", (e) => { touchX = e.changedTouches[0].clientX; }, { passive: true });
+  lb.addEventListener("touchend", (e) => {
+    if (touchX === null || !multiple) return;
+    const dx = e.changedTouches[0].clientX - touchX;
+    touchX = null;
+    if (Math.abs(dx) > 50){
+      lastSwipe = Date.now();
+      show(current + (dx < 0 ? 1 : -1));
     }
   }, { passive: true });
 }

@@ -107,10 +107,11 @@ function buildMetaRows(p){
 
 function buildGalleryHtml(images){
   if (!images.length) return "<p class=\"work-gallery-empty\">No gallery images yet — add some to this project's /gallery folder.</p>";
-  return images.map((img) => `
-      <span class="work-gallery-item" data-ratio="${img.ratio}">
+  return images.map((img, i) => `
+      <a class="work-gallery-item" href="${img.src}" data-ratio="${img.ratio}" aria-label="View image ${i + 1} of ${images.length}">
         <img src="${img.src}" alt="" loading="lazy">
-      </span>`).join("");
+        <span class="project-badge">VIEW</span>
+      </a>`).join("");
 }
 
 // --- About page helpers ---

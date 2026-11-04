@@ -58,11 +58,11 @@ const projects = [
     "ratio": 0.7558
   },
   {
-    "slug": "playmobil",
-    "title": "Playmobil Interactive",
+    "slug": "playmobil-interactive-pos",
+    "title": "Playmobil Interactive POS",
     "year": "2026",
     "category": "Retail",
-    "image": "images/projects/playmobil.jpg",
+    "image": "images/projects/playmobil-interactive-pos.jpg",
     "ratio": 1.5006
   },
   {
