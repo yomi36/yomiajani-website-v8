@@ -265,10 +265,12 @@ a{ color: inherit; text-decoration: none; }
 }
 
 .project-caption{
-  display:flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-areas: "meta year" "title title";
   align-items: baseline;
-  gap: 16px;
+  column-gap: 16px;
+  row-gap: 8px;
   margin-top: 12px;
   font-size: 11px;
   letter-spacing: 0.06em;
@@ -291,22 +293,12 @@ a{ color: inherit; text-decoration: none; }
   color: var(--text);
 }
 
-/* Nummer + Kategorie sind nur in der Handy-Ansicht sichtbar (Option E) */
-.cap-meta{ display: none; }
+/* Bildunterschrift in allen Ansichten gleich: Nummer + Kategorie links, Jahr rechts, Titel darunter */
+.cap-meta{ grid-area: meta; display: flex; gap: 10px; }
+.cap-year{ grid-area: year; }
+.cap-title{ grid-area: title; }
 
 .projects-grid.stacked{ gap: 56px; }
-.projects-grid.stacked .project-caption{
-  display: grid;
-  grid-template-columns: 1fr auto;
-  grid-template-areas: "meta year" "title title";
-  align-items: baseline;
-  row-gap: 8px;
-  margin-top: 12px;
-}
-.projects-grid.stacked .cap-meta{ grid-area: meta; display: flex; gap: 10px; }
-.projects-grid.stacked .cap-cat{ letter-spacing: 0.06em; }
-.projects-grid.stacked .cap-year{ grid-area: year; }
-.projects-grid.stacked .cap-title{ grid-area: title; }
 
 /* ---------------------------------------------
    Contact & footer
