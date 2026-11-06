@@ -16,7 +16,7 @@ concurrency:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -24,22 +24,31 @@ jobs:
       - name: Set up Node
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
 
       - name: Install dependencies
         run: npm install
 
-      - name: Build site (generates works/, about/, images/, etc. from /content)
+      - name: Build site (generates works/, about/, images/ ... from /content and shrinks the images)
         run: npm run build
+
+      - name: Assemble the site folder (only what the website needs, no originals, no scripts)
+        run: |
+          mkdir dist
+          for f in index.html styles.css script.js projects-data.js about works images impressum showreel; do
+            if [ -e "$f" ]; then cp -r "$f" dist/; fi
+          done
+          echo "Size of the published site:"
+          du -sh dist
 
       - name: Upload build output
         uses: actions/upload-pages-artifact@v3
         with:
-          path: .
+          path: dist
 
   deploy:
     needs: build
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}

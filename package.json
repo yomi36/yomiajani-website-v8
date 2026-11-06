@@ -7,6 +7,6 @@
     "build": "node scripts/build-content.js"
   },
   "dependencies": {
-    "image-size": "^1.1.1"
+    "image-size": "^2.1.0"
   }
 }

@@ -27,7 +27,9 @@
 
 const fs = require("fs");
 const path = require("path");
-const sizeOf = require("image-size").default || require("image-size");
+const crypto = require("crypto");
+const imageSizeLib = require("image-size");
+const imageSize = imageSizeLib.imageSize || imageSizeLib.default || imageSizeLib; // funktioniert mit image-size 1.x und 2.x
 
 const ROOT = path.join(__dirname, "..");
 const CONTENT_DIR = path.join(ROOT, "content", "projects");
@@ -44,6 +46,39 @@ const INDEX_FILE = path.join(ROOT, "index.html");
 const SHOWREEL_TEMPLATE_FILE = path.join(ROOT, "templates", "showreel-template.html");
 const SHOWREEL_OUT_DIR = path.join(ROOT, "showreel");
 const VALID_IMAGE_EXT = [".jpg", ".jpeg", ".png", ".webp", ".gif"];
+
+// --- Cache-Busting -------------------------------------------------------
+// Browser (vor allem Safari) behalten styles.css / script.js gern im Cache.
+// Hängt man eine Versionsnummer an den Dateinamen, die sich mit dem Inhalt
+// ändert, holt der Browser nach jedem Update garantiert die neue Datei.
+function fileVersion(file){
+  try {
+    return crypto.createHash("md5").update(fs.readFileSync(path.join(ROOT, file))).digest("hex").slice(0, 8);
+  } catch (e) { return ""; }
+}
+function addAssetVersions(html){
+  return html.replace(/(href|src)="((?:\.\.\/)*)(styles\.css|script\.js|projects-data\.js)(?:\?v=[^"]*)?"/g, (m, attr, up, file) => {
+    const v = fileVersion(file);
+    return v ? `${attr}="${up}${file}?v=${v}"` : m;
+  });
+}
+function versionIndexAssets(){
+  if (!fs.existsSync(INDEX_FILE)) return;
+  const html = fs.readFileSync(INDEX_FILE, "utf8");
+  const updated = addAssetVersions(html);
+  if (updated !== html) fs.writeFileSync(INDEX_FILE, updated);
+  console.log("Versioned CSS/JS links in index.html (cache-busting)");
+}
+
+// Seitenverhältnis unter Berücksichtigung der EXIF-Drehung (Handyfotos):
+// Browser zeigen solche Bilder gedreht an, die rohen Pixelmaße sind dann vertauscht.
+function orientedRatio(file){
+  const d = imageSize(fs.readFileSync(file));
+  const rotated = d.orientation && d.orientation >= 5;
+  const w = rotated ? d.height : d.width;
+  const h = rotated ? d.width : d.height;
+  return Number((w / h).toFixed(4));
+}
 
 function extractVimeoId(raw){
   if (!raw) return null;
@@ -217,7 +252,7 @@ function buildAboutPage(){
     .replace("{{EDUCATION}}", buildRoleEntriesHtml("education.txt"));
 
   fs.mkdirSync(ABOUT_OUT_DIR, { recursive: true });
-  fs.writeFileSync(path.join(ABOUT_OUT_DIR, "index.html"), html);
+  fs.writeFileSync(path.join(ABOUT_OUT_DIR, "index.html"), addAssetVersions(html));
   console.log("Built About page from /content/about/");
 }
 
@@ -255,8 +290,7 @@ function main(){
     const destName = `${slug}${ext}`;
     fs.copyFileSync(path.join(folder, coverFile), path.join(IMAGES_OUT_DIR, destName));
 
-    const dims = sizeOf(path.join(folder, coverFile));
-    const ratio = Number((dims.width / dims.height).toFixed(4));
+    const ratio = orientedRatio(path.join(folder, coverFile));
 
     // Copy gallery images, if any
     const galleryDir = path.join(folder, "gallery");
@@ -269,10 +303,9 @@ function main(){
         .sort((a, b) => a.localeCompare(b, undefined, { numeric: true, sensitivity: "base" }));
       galleryFiles.forEach((f) => {
         fs.copyFileSync(path.join(galleryDir, f), path.join(galleryOutDir, f));
-        const dims = sizeOf(path.join(galleryDir, f));
         galleryPaths.push({
           src: `../../images/projects/${slug}/gallery/${f}`,
-          ratio: Number((dims.width / dims.height).toFixed(4)),
+          ratio: orientedRatio(path.join(galleryDir, f)),
         });
       });
     }
@@ -340,7 +373,7 @@ function main(){
 
       const outDir = path.join(WORKS_OUT_DIR, p.slug);
       fs.mkdirSync(outDir, { recursive: true });
-      fs.writeFileSync(path.join(outDir, "index.html"), html);
+      fs.writeFileSync(path.join(outDir, "index.html"), addAssetVersions(html));
     });
     console.log(`Built ${projects.length} work page(s) into /works/`);
   } else {
@@ -368,7 +401,7 @@ function buildShowreelPage(){
   const template = fs.readFileSync(SHOWREEL_TEMPLATE_FILE, "utf8");
   const html = template.replace("{{VIDEO}}", videoHtml);
   fs.mkdirSync(SHOWREEL_OUT_DIR, { recursive: true });
-  fs.writeFileSync(path.join(SHOWREEL_OUT_DIR, "index.html"), html);
+  fs.writeFileSync(path.join(SHOWREEL_OUT_DIR, "index.html"), addAssetVersions(html));
   console.log(`Built standalone showreel page at /showreel/ (Vimeo ${id}, sound + controls on)`);
 }
 
@@ -399,7 +432,7 @@ function buildImpressumPage(){
     .replace("{{IMPRESSUM}}", buildLegalSectionHtml("impressum.txt"))
     .replace("{{DATENSCHUTZ}}", buildLegalSectionHtml("datenschutz.txt"));
   fs.mkdirSync(IMPRESSUM_OUT_DIR, { recursive: true });
-  fs.writeFileSync(path.join(IMPRESSUM_OUT_DIR, "index.html"), html);
+  fs.writeFileSync(path.join(IMPRESSUM_OUT_DIR, "index.html"), addAssetVersions(html));
   console.log("Built Impressum & Datenschutz page from /content/impressum/");
 }
 
@@ -408,3 +441,4 @@ buildAboutPage();
 buildHomepageVideo();
 buildShowreelPage();
 buildImpressumPage();
+versionIndexAssets();
