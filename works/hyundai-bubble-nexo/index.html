@@ -55,40 +55,44 @@
 
   <section class="work-gallery">
     
-      <a class="work-gallery-item" href="../../images/projects/hyundai-bubble-nexo/gallery/gallery-1.jpg" data-ratio="1.7885" aria-label="View image 1 of 9">
+      <a class="work-gallery-item" href="../../images/projects/hyundai-bubble-nexo/gallery/gallery-1.jpg" data-ratio="1.7885" aria-label="View image 1 of 10">
         <img src="../../images/projects/hyundai-bubble-nexo/gallery/gallery-1.jpg" alt="" loading="lazy">
         <span class="project-badge">VIEW</span>
       </a>
-      <a class="work-gallery-item" href="../../images/projects/hyundai-bubble-nexo/gallery/gallery-2.jpg" data-ratio="1.7717" aria-label="View image 2 of 9">
+      <a class="work-gallery-item" href="../../images/projects/hyundai-bubble-nexo/gallery/gallery-2.jpg" data-ratio="1.7717" aria-label="View image 2 of 10">
         <img src="../../images/projects/hyundai-bubble-nexo/gallery/gallery-2.jpg" alt="" loading="lazy">
         <span class="project-badge">VIEW</span>
       </a>
-      <a class="work-gallery-item" href="../../images/projects/hyundai-bubble-nexo/gallery/gallery-3.jpg" data-ratio="1.7719" aria-label="View image 3 of 9">
+      <a class="work-gallery-item" href="../../images/projects/hyundai-bubble-nexo/gallery/gallery-3.jpg" data-ratio="1.7719" aria-label="View image 3 of 10">
         <img src="../../images/projects/hyundai-bubble-nexo/gallery/gallery-3.jpg" alt="" loading="lazy">
         <span class="project-badge">VIEW</span>
       </a>
-      <a class="work-gallery-item" href="../../images/projects/hyundai-bubble-nexo/gallery/gallery-4.jpg" data-ratio="1.7716" aria-label="View image 4 of 9">
+      <a class="work-gallery-item" href="../../images/projects/hyundai-bubble-nexo/gallery/gallery-4.jpg" data-ratio="1.7716" aria-label="View image 4 of 10">
         <img src="../../images/projects/hyundai-bubble-nexo/gallery/gallery-4.jpg" alt="" loading="lazy">
         <span class="project-badge">VIEW</span>
       </a>
-      <a class="work-gallery-item" href="../../images/projects/hyundai-bubble-nexo/gallery/gallery-5.jpg" data-ratio="1.8796" aria-label="View image 5 of 9">
+      <a class="work-gallery-item" href="../../images/projects/hyundai-bubble-nexo/gallery/gallery-5.jpg" data-ratio="1.8796" aria-label="View image 5 of 10">
         <img src="../../images/projects/hyundai-bubble-nexo/gallery/gallery-5.jpg" alt="" loading="lazy">
         <span class="project-badge">VIEW</span>
       </a>
-      <a class="work-gallery-item" href="../../images/projects/hyundai-bubble-nexo/gallery/gallery-6.jpg" data-ratio="1.6" aria-label="View image 6 of 9">
+      <a class="work-gallery-item" href="../../images/projects/hyundai-bubble-nexo/gallery/gallery-6.jpg" data-ratio="1.6" aria-label="View image 6 of 10">
         <img src="../../images/projects/hyundai-bubble-nexo/gallery/gallery-6.jpg" alt="" loading="lazy">
         <span class="project-badge">VIEW</span>
       </a>
-      <a class="work-gallery-item" href="../../images/projects/hyundai-bubble-nexo/gallery/gallery-7.jpg" data-ratio="1.4985" aria-label="View image 7 of 9">
+      <a class="work-gallery-item" href="../../images/projects/hyundai-bubble-nexo/gallery/gallery-7.jpg" data-ratio="1.4985" aria-label="View image 7 of 10">
         <img src="../../images/projects/hyundai-bubble-nexo/gallery/gallery-7.jpg" alt="" loading="lazy">
         <span class="project-badge">VIEW</span>
       </a>
-      <a class="work-gallery-item" href="../../images/projects/hyundai-bubble-nexo/gallery/gallery-8.jpg" data-ratio="1.5403" aria-label="View image 8 of 9">
+      <a class="work-gallery-item" href="../../images/projects/hyundai-bubble-nexo/gallery/gallery-8.jpg" data-ratio="1.5403" aria-label="View image 8 of 10">
         <img src="../../images/projects/hyundai-bubble-nexo/gallery/gallery-8.jpg" alt="" loading="lazy">
         <span class="project-badge">VIEW</span>
       </a>
-      <a class="work-gallery-item" href="../../images/projects/hyundai-bubble-nexo/gallery/gallery-9.jpg" data-ratio="1.5403" aria-label="View image 9 of 9">
+      <a class="work-gallery-item" href="../../images/projects/hyundai-bubble-nexo/gallery/gallery-9.jpg" data-ratio="1.5403" aria-label="View image 9 of 10">
         <img src="../../images/projects/hyundai-bubble-nexo/gallery/gallery-9.jpg" alt="" loading="lazy">
+        <span class="project-badge">VIEW</span>
+      </a>
+      <a class="work-gallery-item" href="../../images/projects/hyundai-bubble-nexo/gallery/gallery-10.jpg" data-ratio="1.7778" aria-label="View image 10 of 10">
+        <img src="../../images/projects/hyundai-bubble-nexo/gallery/gallery-10.jpg" alt="" loading="lazy">
         <span class="project-badge">VIEW</span>
       </a>
   </section>
@@ -151,23 +155,49 @@ function layoutGallery(){
   galleryMode = nextMode;
 
   if (!wide){
-    galleryItems.forEach((item, i) => {
-      const widthPct = 78 + Math.random() * 18; // some variance instead of a flat 100%
-      const pushRight = i % 2 === 0;
+    // Rhythmus-Raster (Handy): Zeilen wechseln zwischen voller Breite und zwei Bildern
+    // nebeneinander. Alle Kanten liegen auf denselben Linien; die beiden Bilder einer
+    // Zeile haben dieselbe Höhe (Breite folgt dem Seitenverhältnis), nichts wird beschnitten.
+    const GAP = 12;
+    galleryGrid.classList.add("rhythm");
+    galleryGrid.style.height = "";
+    const ratios = galleryItems.map((it) => Number(it.dataset.ratio) || 1.4);
+
+    function setItem(item, width, ratio){
       item.style.position = "relative";
-      item.style.width = `${widthPct}%`;
       item.style.left = "";
       item.style.top = "";
-      item.style.marginBottom = "28px";
-      item.style.marginLeft = pushRight ? "auto" : "0";
-      item.style.marginRight = pushRight ? "0" : "auto";
+      item.style.height = "";
+      item.style.margin = "0";
       item.style.transform = "";
-      const ratio = Number(item.dataset.ratio) || 1.4;
+      item.style.width = width;
       item.style.aspectRatio = String(ratio);
-    });
-    galleryGrid.style.height = "";
+    }
+
+    let i = 0, wantPair = false;
+    while (i < galleryItems.length){
+      let pair = wantPair && i + 1 < galleryItems.length;
+      if (pair){
+        const hi = Math.max(ratios[i], ratios[i + 1]), lo = Math.min(ratios[i], ratios[i + 1]);
+        if (hi / lo > 2.4) pair = false; // zu ungleich: lieber einzeln
+      }
+      if (pair){
+        const total = ratios[i] + ratios[i + 1];
+        const w = (r) => "calc((100% - " + (GAP + 0.5) + "px) * " + (r / total).toFixed(5) + ")";
+        setItem(galleryItems[i], w(ratios[i]), ratios[i]);
+        setItem(galleryItems[i + 1], w(ratios[i + 1]), ratios[i + 1]);
+        i += 2;
+      } else {
+        setItem(galleryItems[i], "100%", ratios[i]);
+        i += 1;
+      }
+      wantPair = !pair;
+    }
     return;
   }
+
+  galleryGrid.classList.remove("rhythm");
+  galleryItems.forEach((item) => { item.style.margin = ""; });
 
   const colCount = 2;
   const gutter = 48;

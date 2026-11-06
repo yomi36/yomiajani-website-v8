@@ -14,7 +14,7 @@ const isTouchDevice = window.matchMedia("(hover: none)").matches;
 function buildItems(){
   const frag = document.createDocumentFragment();
 
-  projects.forEach((p) => {
+  projects.forEach((p, idx) => {
     const item = document.createElement("a");
     item.href = `works/${p.slug}/index.html`;
     item.className = "project-item";
@@ -25,8 +25,9 @@ function buildItems(){
         <span class="project-badge">VIEW</span>
       </span>
       <span class="project-caption">
-        <span>${p.title}</span>
-        <span>${p.year}</span>
+        <span class="cap-title">${p.title}</span>
+        <span class="cap-year">${p.year}</span>
+        <span class="cap-meta"><span class="cap-num">${String(idx + 1).padStart(2, "0")}</span><span class="cap-cat">${p.category || ""}</span></span>
       </span>
     `;
 
@@ -103,6 +104,7 @@ function layoutScatter(){
     item.style.top = `${top}px`;
     item.style.transform = "";
 
+    item.querySelector(".project-cover").style.aspectRatio = String(item.ratio);
     const coverHeight = width / item.ratio;
     const captionHeight = 30;
     item.baseTop = top;
@@ -115,15 +117,16 @@ function layoutScatter(){
 }
 
 function layoutStacked(){
-  items.forEach((item, i) => {
-    const widthPct = 78 + Math.random() * 18; // 78%–96% of the column width — some variance instead of a flat 100%
-    const pushRight = i % 2 === 0;
-    item.style.width = `${widthPct}%`;
+  // Handy (Option E): jedes Projekt volle Breite, gleiche Kante, Text unter dem Foto.
+  // Das Bildformat wird auf 4:5 bis 7:5 begrenzt, damit sehr hohe/breite Cover nicht aus dem Rahmen fallen.
+  items.forEach((item) => {
+    item.style.width = "100%";
     item.style.left = "";
     item.style.top = "";
-    item.style.marginLeft = pushRight ? "auto" : "0";
-    item.style.marginRight = pushRight ? "0" : "auto";
+    item.style.margin = "0";
     item.style.transform = "";
+    const r = Math.min(1.4, Math.max(0.8, item.ratio));
+    item.querySelector(".project-cover").style.aspectRatio = String(r);
   });
   grid.style.height = "";
 }
