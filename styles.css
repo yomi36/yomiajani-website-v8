@@ -5,6 +5,7 @@
   --bg:      #060606;
   --text:    #f4f3ef;
   --dim:     #8a8a85;
+  --text-soft: #c7c5be;   /* Zwischenstufe: Projekttitel */
   --line:    rgba(244,243,239,0.16);
   --line-strong: rgba(244,243,239,0.3);
 
@@ -280,7 +281,9 @@ a{ color: inherit; text-decoration: none; }
 }
 
 .project-item:hover .project-caption,
-.project-item.in-focus .project-caption{ color: var(--text); }
+.project-item.in-focus .project-caption{ color: var(--text-soft); }
+.project-item:hover .cap-title,
+.project-item.in-focus .cap-title{ color: var(--text); }
 
 /* Titel: in allen Ansichten größer und in der Textfarbe, damit er sich von Kategorie/Jahr abhebt */
 .cap-title{
@@ -290,7 +293,8 @@ a{ color: inherit; text-decoration: none; }
   line-height: 1.2;
   letter-spacing: -0.01em;
   text-transform: none;
-  color: var(--text);
+  color: var(--text-soft);
+  transition: color .2s ease;
 }
 
 /* Bildunterschrift in allen Ansichten gleich: Nummer + Kategorie links, Jahr rechts, Titel darunter */
