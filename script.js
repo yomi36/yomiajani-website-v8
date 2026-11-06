@@ -106,7 +106,7 @@ function layoutScatter(){
 
     item.querySelector(".project-cover").style.aspectRatio = String(item.ratio);
     const coverHeight = width / item.ratio;
-    const captionHeight = 30;
+    const captionHeight = 40;
     item.baseTop = top;
     item.baseHeight = coverHeight + captionHeight;
     item.parallaxFactor = colFactors[col];
