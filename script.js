@@ -10,11 +10,12 @@ const items = [];
 let mode = null; // "scatter" | "stacked"
 const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 const isTouchDevice = window.matchMedia("(hover: none)").matches;
+const canHover = window.matchMedia("(hover: hover)").matches;
 
 function buildItems(){
   const frag = document.createDocumentFragment();
 
-  projects.forEach((p, idx) => {
+  projects.forEach((p) => {
     const item = document.createElement("a");
     item.href = `works/${p.slug}/index.html`;
     item.className = "project-item";
@@ -27,7 +28,7 @@ function buildItems(){
       <span class="project-caption">
         <span class="cap-title">${p.title}</span>
         <span class="cap-year">${p.year}</span>
-        <span class="cap-meta"><span class="cap-num">${String(idx + 1).padStart(2, "0")}</span><span class="cap-cat">${p.category || ""}</span></span>
+        <span class="cap-meta"><span class="cap-cat">${p.category || ""}</span></span>
       </span>
     `;
 
@@ -106,7 +107,8 @@ function layoutScatter(){
 
     item.querySelector(".project-cover").style.aspectRatio = String(item.ratio);
     const coverHeight = width / item.ratio;
-    const captionHeight = 66; // Meta-Zeile + Titel (einzeilig) + Abstände
+    // Mit Maus ist der Text zunächst unsichtbar -> weniger Platz reservieren (er ragt beim Hover in den Abstand)
+    const captionHeight = canHover ? 30 : 66;
     item.baseTop = top;
     item.baseHeight = coverHeight + captionHeight;
     item.parallaxFactor = colFactors[col];

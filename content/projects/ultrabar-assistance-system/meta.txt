@@ -1,6 +1,6 @@
 title: Ultrabar Assistance System
 year: 2017
-category: R&D
+category: Research & Development
 at: Universität der Künste
 role: Concept, Design, Execution
 order: 12

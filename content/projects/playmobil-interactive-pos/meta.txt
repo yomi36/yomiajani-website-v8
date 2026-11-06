@@ -1,6 +1,6 @@
 title: Playmobil Interactive POS
 year: 2026
-category: Retail
+category: Brand Experience
 at: CreativeDock
 for:Playmobil
 role: Design, Interaction, Ai Content Curation

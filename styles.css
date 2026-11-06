@@ -259,10 +259,11 @@ a{ color: inherit; text-decoration: none; }
   pointer-events: none;
 }
 
-.project-item:hover .project-badge,
-.project-item.in-focus .project-badge{
-  opacity: 1;
-  transform: translate(-50%,-50%) scale(1);
+@media (hover: hover){
+  .project-item:hover .project-badge{
+    opacity: 1;
+    transform: translate(-50%,-50%) scale(1);
+  }
 }
 
 .project-caption{
@@ -284,6 +285,29 @@ a{ color: inherit; text-decoration: none; }
 .project-item.in-focus .project-caption{ color: var(--text-soft); }
 .project-item:hover .cap-title,
 .project-item.in-focus .cap-title{ color: var(--text); }
+
+/* Text unter den Projekten: unsichtbar, bis das Projekt gemeint ist.
+   - Maus: beim Hover   - Touch: beim Bild im Fokus (Bildschirmmitte, siehe script.js)
+   - Tastatur: bei Fokus auf dem Projekt */
+.project-caption{
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity .3s ease, transform .3s ease, color .2s ease;
+}
+.project-item:focus-visible .project-caption,
+.project-item.in-focus .project-caption{
+  opacity: 1;
+  transform: none;
+}
+@media (hover: hover){
+  .project-item:hover .project-caption{
+    opacity: 1;
+    transform: none;
+  }
+}
+@media (prefers-reduced-motion: reduce){
+  .project-caption{ transform: none; transition: opacity .15s linear, color .2s ease; }
+}
 
 /* Titel: in allen Ansichten größer und in der Textfarbe, damit er sich von Kategorie/Jahr abhebt */
 .cap-title{
@@ -450,10 +474,11 @@ a{ color: inherit; text-decoration: none; }
 }
 .work-gallery-item:hover img,
 .work-gallery-item.in-focus img{ transform: scale(1.035); }
-.work-gallery-item:hover .project-badge,
-.work-gallery-item.in-focus .project-badge{
-  opacity: 1;
-  transform: translate(-50%,-50%) scale(1);
+@media (hover: hover){
+  .work-gallery-item:hover .project-badge{
+    opacity: 1;
+    transform: translate(-50%,-50%) scale(1);
+  }
 }
 .work-gallery-item:focus-visible{ outline: 1px solid var(--text); outline-offset: 3px; }
 

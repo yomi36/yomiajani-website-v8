@@ -5,7 +5,7 @@ const projects = [
     "slug": "sound-structures",
     "title": "Sound Structures",
     "year": "2022",
-    "category": "Research",
+    "category": "Research & Development",
     "image": "images/projects/sound-structures.jpg",
     "ratio": 1.7778
   },
@@ -29,7 +29,7 @@ const projects = [
     "slug": "soft-spaces",
     "title": "Soft Spaces",
     "year": "2025",
-    "category": "Exhibition",
+    "category": "Play Design",
     "image": "images/projects/soft-spaces.jpg",
     "ratio": 0.7737
   },
@@ -37,7 +37,7 @@ const projects = [
     "slug": "inflatable-formworks",
     "title": "Inflatable Formworks",
     "year": "2021",
-    "category": "Research",
+    "category": "Research & Development",
     "image": "images/projects/inflatable-formworks.jpg",
     "ratio": 1.4988
   },
@@ -45,7 +45,7 @@ const projects = [
     "slug": "pop-up-prints",
     "title": "Pop Up Prints",
     "year": "2021",
-    "category": "Research",
+    "category": "Research & Development",
     "image": "images/projects/pop-up-prints.JPG",
     "ratio": 1.4988
   },
@@ -53,7 +53,7 @@ const projects = [
     "slug": "liquid-glass-interface",
     "title": "Liquid Glass Interface",
     "year": "2026",
-    "category": "R&D",
+    "category": "Interface Design",
     "image": "images/projects/liquid-glass-interface.png",
     "ratio": 0.7558
   },
@@ -61,7 +61,7 @@ const projects = [
     "slug": "playmobil-interactive-pos",
     "title": "Playmobil Interactive POS",
     "year": "2026",
-    "category": "Retail",
+    "category": "Brand Experience",
     "image": "images/projects/playmobil-interactive-pos.jpg",
     "ratio": 1.5006
   },
@@ -77,7 +77,7 @@ const projects = [
     "slug": "aircraft-passenger-service-unit",
     "title": "Aircraft Passenger Service Unit",
     "year": "2024",
-    "category": "R&D",
+    "category": "Research & Development",
     "image": "images/projects/aircraft-passenger-service-unit.jpeg",
     "ratio": 1.7902
   },
@@ -93,7 +93,7 @@ const projects = [
     "slug": "ultrabar-assistance-system",
     "title": "Ultrabar Assistance System",
     "year": "2017",
-    "category": "R&D",
+    "category": "Research & Development",
     "image": "images/projects/ultrabar-assistance-system.jpeg",
     "ratio": 1.5
   },

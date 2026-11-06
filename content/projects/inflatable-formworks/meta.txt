@@ -1,6 +1,6 @@
 title: Inflatable Formworks
 year: 2021
-category: Research
+category: Research & Development
 at: Royal College of Art
 role: Concept, Design, Execution
 readmore: https://2021.rca.ac.uk/students/yomi-ajani/

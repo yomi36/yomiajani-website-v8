@@ -1,6 +1,6 @@
 title: Aircraft Passenger Service Unit
 year: 2024
-category: R&D
+category: Research & Development
 with: nFrontier
 role: Digital Content System & Visualisations
 order: 10

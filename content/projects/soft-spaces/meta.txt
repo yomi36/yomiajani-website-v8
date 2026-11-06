@@ -1,6 +1,6 @@
 title: Soft Spaces
 year: 2025
-category: Exhibition
+category: Play Design
 for: Mille Formes
 role: Design, Development, Production
 readmore: https://www.milleformes.fr/programme/soft-spaces

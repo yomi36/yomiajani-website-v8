@@ -1,6 +1,6 @@
 title: Sound Structures
 year: 2022
-category: Research
+category: Research & Development
 at: nFrontier
 role: Concept, Design, Execution
 readmore: https://www.designboom.com/technology/nfrontier-sound-structures-human-robot-manufacturing-process-08-15-2022/

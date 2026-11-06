@@ -1,6 +1,6 @@
 title: Liquid Glass Interface
 year: 2026
-category: R&D
+category: Interface Design
 at: Creative Dock
 role: Concept, Interactive Design System
 order: 7
