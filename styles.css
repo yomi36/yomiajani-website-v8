@@ -699,76 +699,76 @@ a{ color: inherit; text-decoration: none; }
 }
 
 /* ---------------------------------------------
-   Mobile Startseite, "Vorhang": Das Video füllt den Bildschirm
-   (Hochformat-Ausschnitt) und bleibt stehen. Die Projekte schieben sich
-   beim Scrollen wie ein Blatt darüber, das Video wird dabei dunkler.
-   Scroll-Fortschritt (--curtain) und Nav-Höhe (--nav-h) setzt script.js.
+   Mobile Startseite: Das Video füllt zuerst den Bildschirm (Hochformat-Ausschnitt).
+   Beim Scrollen schrumpft es zum normalen 16:9-Rahmen, danach folgen die Projekte.
+   Der Rahmen bleibt dabei oben "kleben" (sticky); Größe und Position setzt script.js
+   (Funktion updateHeroMorph) abhängig vom Scrollen. Bei "reduzierter Bewegung" bleibt
+   es beim normalen 16:9-Rahmen.
 --------------------------------------------- */
 .hero-dim{ display: none; }
 
-@media (max-width: 640px){
+@media (max-width: 640px) and (prefers-reduced-motion: no-preference){
   .home .hero{
-    position: sticky;
-    top: 0;
-    z-index: 0;
+    position: relative;
     max-width: none;
-    height: 100vh;
-    height: 100svh;
-    margin: calc(-1 * var(--nav-h, 70px)) 0 0;   /* Video läuft unter dem Header */
+    height: calc(100vh + var(--morph, 60vh));
+    height: calc(100svh + var(--morph, 60svh));            /* Platz zum Festhalten, solange das Video schrumpft */
+    margin: calc(-1 * var(--nav-h, 70px)) 0 calc(-1 * var(--morph, 60svh));   /* Video unter den Header, Projekte rücken in den Zusatzraum */
     padding: 0;
     display: block;
   }
-  .home .hero-frame{ position: relative; max-width: none; width: 100%; height: 100%; margin: 0; }
-  .home .hero-frame-inner{ position: absolute; inset: 0; aspect-ratio: auto; border-radius: 0; background: #111; }
+  .home .hero-frame{
+    position: sticky;
+    top: 0;
+    width: 100%;
+    max-width: none;
+    height: 100vh;
+    height: 100svh;
+    margin: 0;
+  }
+  .home .hero-frame-inner{
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 100%;
+    aspect-ratio: auto;
+    border-radius: 0;
+    overflow: hidden;
+    background: #111;
+  }
   .home .hero-frame-inner iframe{
     inset: auto;
     top: 50%;
     left: 50%;
+    width: max(100vw, calc(100vh * 16 / 9));
+    height: max(100vh, calc(100vw * 9 / 16));
     width: max(100vw, calc(100svh * 16 / 9));
     height: max(100svh, calc(100vw * 9 / 16));
-    transform: translate(-50%, calc(-50% - var(--curtain, 0) * 8svh));
+    transform: translate(-50%, -50%);
+    transform-origin: center;
+    will-change: transform;
   }
-  .home .hero-dim{
-    display: block;
-    position: absolute;
-    inset: 0;
-    background: #060606;
-    opacity: calc(var(--curtain, 0) * 0.75);
-    pointer-events: none;
-  }
+  /* "SHOWREEL 2026" erscheint erst, wenn das Video zum Querformat geworden ist */
   .home .hero-frame-caption{
     position: absolute;
     left: var(--pad);
     right: var(--pad);
-    bottom: 96px;
+    top: calc(var(--box-bottom, 100vh) + 10px);
     margin: 0;
-    z-index: 2;
-    color: var(--text);
-    text-shadow: 0 1px 10px rgba(0,0,0,0.5);
+    opacity: var(--p, 0);
+    pointer-events: none;
   }
-  .home .hero.covered{ visibility: hidden; }
-
-  /* das "Blatt" mit den Projekten schiebt sich über das Video */
-  .home .projects{
-    position: relative;
-    z-index: 1;
-    background: var(--bg);
-    margin-top: -72px;
-    border-radius: 22px 22px 0 0;
-  }
-  .home .projects::before{
+  /* kleiner Pfeil als Hinweis zum Scrollen, verschwindet sofort */
+  .home .hero-frame::after{
     content: "";
     position: absolute;
-    top: 10px;
+    bottom: 26px;
     left: 50%;
-    width: 36px;
-    height: 3px;
-    margin-left: -18px;
-    border-radius: 2px;
-    background: var(--line-strong);
+    width: 9px;
+    height: 9px;
+    border-right: 1.5px solid var(--text);
+    border-bottom: 1.5px solid var(--text);
+    transform: translateX(-50%) rotate(45deg);
+    opacity: calc(1 - var(--p, 0) * 5);
+    pointer-events: none;
   }
-  .home .contact, .home .footer{ position: relative; z-index: 1; background: var(--bg); }
-}
-@media (max-width: 640px) and (prefers-reduced-motion: reduce){
-  .home .hero-frame-inner iframe{ transform: translate(-50%, -50%); }
 }

@@ -230,36 +230,71 @@ navToggle?.addEventListener("click", () => navLinks.classList.toggle("open"));
 navLinks?.querySelectorAll("a").forEach(a => a.addEventListener("click", () => navLinks.classList.remove("open")));
 
 // ------------------------------------------------------------------
-// Mobile "Vorhang": Das Video bleibt stehen, die Projekte schieben sich darüber.
-// Das Layout steckt in styles.css; hier nur Scroll-Fortschritt und Nav-Höhe.
+// Mobile Startseite: Das Video startet als Hochformat-Ausschnitt im Vollbild und
+// schrumpft beim Scrollen zum 16:9-Rahmen (Layout/Sticky: styles.css).
+// Hier wird nur der Fortschritt berechnet und Größe/Position gesetzt.
 // ------------------------------------------------------------------
 const heroEl = document.querySelector(".hero");
+const heroFrame = document.querySelector(".hero-frame");
+const heroInner = document.querySelector(".hero-frame-inner");
+const heroIframe = heroInner ? heroInner.querySelector("iframe") : null;
 const navEl = document.querySelector(".nav");
-const mqCurtain = window.matchMedia("(max-width: 640px)");
-const CURTAIN_PEEK = 72; // so viel vom "Blatt" schaut beim Start unten heraus (px, siehe styles.css)
-let curtainTicking = false;
+const mqMorph = window.matchMedia("(max-width: 640px) and (prefers-reduced-motion: no-preference)");
+const MORPH_GAP = 44;      // Abstand zwischen dem fertigen Videorahmen und den Projekten (px)
+const MORPH_TOP_GAP = 16;  // Abstand zwischen Header und fertigem Videorahmen (px)
+let morph = null;          // gemessene Maße
+let morphTicking = false;
 
-function setNavHeight(){
-  if (navEl) document.documentElement.style.setProperty("--nav-h", navEl.offsetHeight + "px");
+function measureMorph(){
+  if (!heroEl || !heroFrame || !heroInner || !heroIframe || !mqMorph.matches){ morph = null; return; }
+  const W = document.documentElement.clientWidth;
+  const frameH = heroFrame.offsetHeight;                      // = 100svh laut CSS
+  const navH = navEl ? navEl.offsetHeight : 70;
+  document.documentElement.style.setProperty("--nav-h", navH + "px");
+  const pad = parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--pad")) || 20;
+  const finalW = W - 2 * pad;
+  const finalH = finalW * 9 / 16;
+  const finalTop = navH + MORPH_TOP_GAP;
+  const finalBottom = finalTop + finalH;
+  const D = Math.max(frameH - (finalBottom + MORPH_GAP), 200); // Scrollstrecke, in der das Video schrumpft
+  const ifW = Math.max(W, frameH * 16 / 9);                    // Basisgröße des iframes (wie im CSS)
+  const ifH = ifW * 9 / 16;
+  morph = { W, frameH, pad, finalTop, finalBottom, D, ifW, ifH };
+  heroEl.style.setProperty("--morph", D + "px");
 }
 
-function updateCurtain(){
-  curtainTicking = false;
+function updateHeroMorph(){
+  morphTicking = false;
   if (!heroEl) return;
-  if (!mqCurtain.matches){
-    heroEl.style.removeProperty("--curtain");
-    heroEl.classList.remove("covered");
+  if (!morph){
+    // Desktop / reduzierte Bewegung: alle Inline-Werte entfernen
+    [heroInner, heroIframe].forEach((el) => { if (el) el.removeAttribute("style"); });
+    ["--morph", "--p", "--box-bottom"].forEach((v) => heroEl.style.removeProperty(v));
     return;
   }
-  const range = Math.max(window.innerHeight - CURTAIN_PEEK, 1);
-  const p = Math.min(Math.max(window.scrollY / range, 0), 1);
-  heroEl.style.setProperty("--curtain", p.toFixed(3));
-  heroEl.classList.toggle("covered", p >= 1); // komplett verdeckt -> nicht mehr rendern
+  const p = Math.min(Math.max(window.scrollY / morph.D, 0), 1);
+  const e = p * p * (3 - 2 * p);                               // sanftes Ein-/Ausblenden der Bewegung
+  const lerp = (a, b) => a + (b - a) * e;
+  const top = lerp(0, morph.finalTop);
+  const side = lerp(0, morph.pad);
+  const bottom = lerp(morph.frameH, morph.finalBottom);
+  const boxW = morph.W - 2 * side;
+  const boxH = bottom - top;
+  const scale = Math.max(boxW / morph.ifW, boxH / morph.ifH);  // immer so groß, dass der Rahmen ganz gefüllt ist
+  heroInner.style.top = top.toFixed(2) + "px";
+  heroInner.style.left = heroInner.style.right = side.toFixed(2) + "px";
+  heroInner.style.height = boxH.toFixed(2) + "px";
+  heroInner.style.borderRadius = lerp(0, 4).toFixed(2) + "px";
+  heroIframe.style.transform = "translate(-50%, -50%) scale(" + scale.toFixed(4) + ")";
+  heroEl.style.setProperty("--p", e.toFixed(3));
+  heroEl.style.setProperty("--box-bottom", bottom.toFixed(2) + "px");
 }
 
+function refreshMorph(){ measureMorph(); updateHeroMorph(); }
+
 window.addEventListener("scroll", () => {
-  if (!curtainTicking){ curtainTicking = true; requestAnimationFrame(updateCurtain); }
+  if (!morphTicking){ morphTicking = true; requestAnimationFrame(updateHeroMorph); }
 }, { passive: true });
-window.addEventListener("resize", () => { setNavHeight(); updateCurtain(); });
-setNavHeight();
-updateCurtain();
+window.addEventListener("resize", refreshMorph);
+window.addEventListener("load", refreshMorph);
+refreshMorph();
