@@ -2,20 +2,20 @@
 // To change a project, edit its folder in /content/projects/ instead.
 const projects = [
   {
-    "slug": "sound-structures",
-    "title": "Sound Structures",
-    "year": "2022",
-    "category": "Research & Development",
-    "image": "images/projects/sound-structures.jpg",
-    "ratio": 1.7778
-  },
-  {
     "slug": "mini-lab-kinetic-sculpture",
     "title": "MINI LAB Kinetic Sculpture",
     "year": "2023",
     "category": "Brand Experience",
     "image": "images/projects/mini-lab-kinetic-sculpture.jpg",
     "ratio": 1.4988
+  },
+  {
+    "slug": "sound-structures",
+    "title": "Sound Structures",
+    "year": "2022",
+    "category": "Research & Development",
+    "image": "images/projects/sound-structures.jpg",
+    "ratio": 1.7778
   },
   {
     "slug": "hyundai-bubble-nexo",

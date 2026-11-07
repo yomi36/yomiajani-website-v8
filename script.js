@@ -228,3 +228,38 @@ const navToggle = document.getElementById("navToggle");
 const navLinks = document.querySelector(".nav-links");
 navToggle?.addEventListener("click", () => navLinks.classList.toggle("open"));
 navLinks?.querySelectorAll("a").forEach(a => a.addEventListener("click", () => navLinks.classList.remove("open")));
+
+// ------------------------------------------------------------------
+// Mobile "Vorhang": Das Video bleibt stehen, die Projekte schieben sich darüber.
+// Das Layout steckt in styles.css; hier nur Scroll-Fortschritt und Nav-Höhe.
+// ------------------------------------------------------------------
+const heroEl = document.querySelector(".hero");
+const navEl = document.querySelector(".nav");
+const mqCurtain = window.matchMedia("(max-width: 640px)");
+const CURTAIN_PEEK = 72; // so viel vom "Blatt" schaut beim Start unten heraus (px, siehe styles.css)
+let curtainTicking = false;
+
+function setNavHeight(){
+  if (navEl) document.documentElement.style.setProperty("--nav-h", navEl.offsetHeight + "px");
+}
+
+function updateCurtain(){
+  curtainTicking = false;
+  if (!heroEl) return;
+  if (!mqCurtain.matches){
+    heroEl.style.removeProperty("--curtain");
+    heroEl.classList.remove("covered");
+    return;
+  }
+  const range = Math.max(window.innerHeight - CURTAIN_PEEK, 1);
+  const p = Math.min(Math.max(window.scrollY / range, 0), 1);
+  heroEl.style.setProperty("--curtain", p.toFixed(3));
+  heroEl.classList.toggle("covered", p >= 1); // komplett verdeckt -> nicht mehr rendern
+}
+
+window.addEventListener("scroll", () => {
+  if (!curtainTicking){ curtainTicking = true; requestAnimationFrame(updateCurtain); }
+}, { passive: true });
+window.addEventListener("resize", () => { setNavHeight(); updateCurtain(); });
+setNavHeight();
+updateCurtain();
